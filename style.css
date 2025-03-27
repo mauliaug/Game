@@ -1,0 +1,298 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body utama */
+body {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Header atas (Nama MC, Jam, Tanggal, Uang) */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+    font-size: 14px;
+}
+
+/* Menu utama */
+#menu-utama {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.menu-item {
+    background: #444;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease, background 0.3s ease;
+}
+
+.menu-item:hover {
+    background: linear-gradient(45deg, #666, #888);
+    transform: scale(1.1);
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+footer:hover {
+    background: linear-gradient(90deg, #333, #555);
+}
+
+/* Scrollbar Kustom */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 5px;
+}
+
+/* Chat System */
+#chat-system {
+    background-color: #222;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+/* Chat Kontak */
+.chat-contact {
+    display: flex;
+    align-items: center;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.chat-contact:hover {
+    background: #555;
+    transform: scale(1.05);
+}
+
+.chat-contact img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notif {
+    background: red;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+/* Indikator Online/Offline */
+.chat-contact .status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: auto;
+}
+
+.chat-contact.online .status {
+    background: limegreen;
+}
+
+.chat-contact.offline .status {
+    background: red;
+}
+
+/* Style untuk popup event dan pesan */
+#event-popup, #message-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+#event-popup.show, #message-popup.show {
+    display: block;
+}
+
+/* Style untuk loading screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Style untuk input nama karakter */
+#name-input-screen, #partner-name-input {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Gallery */
+#gallery {
+    margin-top: 20px;
+    padding: 10px;
+    background: #222;
+    border-radius: 10px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+#image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-item {
+    width: 80px;
+    height: 80px;
+    background: gray;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.image-item:hover {
+    transform: scale(1.1);
+}
+
+/* Achievements */
+#achievements {
+    padding: 10px;
+    background: #222;
+    border-radius: 10px;
+}
+
+#achieve-list {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.locked {
+    width: 50px;
+    height: 50px;
+    background: gray;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.locked.unlocked {
+    background: gold;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes clickEffect {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.9);
+    }
+}
+
+button:active {
+    animation: clickEffect 0.1s ease;
+}
+
+/* Musik */
+#bg-music, #click-sound, #happy-music, #angry-music, #chapter-music {
+    display: none;
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    #menu-utama {
+        flex-wrap: wrap;
+    }
+
+    .menu-item {
+        flex: 1 1 45%;
+        margin: 5px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chat-contact img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .locked {
+        width: 40px;
+        height: 40px;
+    }
+}

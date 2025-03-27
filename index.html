@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Novel Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header UI -->
+    <header>
+        <div id="player-info">
+            <span id="player-name">[Nama Anda]</span> <!-- Placeholder dinamis -->
+            <span id="game-time">00:00</span>
+            <span id="game-date">Senin, 1 Januari 2025</span>
+            <span id="game-period">Pagi</span> <!-- Waktu dalam game -->
+            <span id="game-money" class="money-animation">Rp 0</span>
+        </div>
+    </header>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <video autoplay muted loop>
+            <source src="video/loading.mp4" type="video/mp4">
+        </video>
+        <p>Selamat datang...</p>
+    </div>
+
+    <!-- Halaman Input Nama -->
+    <div id="name-input-screen" style="display: block;">
+        <h2>Masukkan Nama Karakter</h2>
+        <input type="text" id="mc-name" placeholder="Nama Anda">
+        <button onclick="nextStep()">Selanjutnya</button>
+    </div>
+
+    <!-- Halaman Input Nama Pasangan -->
+    <div id="partner-name-input" style="display: none;">
+        <h2>Masukkan Nama Pasangan</h2>
+        <input type="text" id="partner-name" placeholder="Nama Pasangan">
+        <button onclick="startGame()">Selesai</button>
+    </div>
+
+    <!-- UI Utama -->
+    <main id="game-ui" style="display: none;">
+        <div class="top-icons">
+            <button id="settings-btn">⚙ Settings</button>
+            <button id="achievements-btn">🏆 Achievements</button>
+            <button id="shop-btn">🛒 Shop</button>
+            <button id="work-btn">💼 Work</button>
+            <button id="rest-btn" style="display: none;">🛏 Tidur</button>
+        </div>
+
+        <div class="middle-icons">
+            <button id="memories-btn">📖 Memories</button>
+            <button id="squaregram-btn">📸 Squaregram</button>
+            <button id="system-btn">ℹ System</button>
+        </div>
+
+        <div class="bottom-icons">
+            <button id="messages-btn">
+                💬 Messages <span id="message-notif" class="hidden">🔴</span>
+            </button>
+            <button id="gallery-btn">🖼 Pictures</button>
+            <button id="logout-btn">🔌 Logout</button>
+        </div>
+    </main>
+
+    <!-- Chat UI -->
+    <div id="chat-screen">
+        <div id="chat-header">
+            <h2 id="chat-character-name">Nama Karakter</h2>
+            <span id="chat-emotion">😊</span>
+        </div>
+        <div id="chat-box">
+            <p id="chat-text">Pesan akan muncul di sini...</p>
+        </div>
+        <button id="fast-forward">⏩ Percepat Teks</button>
+        <div id="chat-options">
+            <button class="option">Pilihan 1</button>
+            <button class="option">Pilihan 2</button>
+            <button class="option">Pilihan 3</button>
+        </div>
+
+        <div id="chat-status">
+            <span class="status-dot online"></span> Online
+        </div>
+    </div>
+
+    <!-- Shop -->
+    <div id="shop-screen">
+        <h2>Shop</h2>
+        <div id="shop-items">
+            <button class="shop-item" data-price="100">Item 1 - Rp 100</button>
+            <button class="shop-item" data-price="200">Item 2 - Rp 200</button>
+            <button class="shop-item" data-price="300">Item 3 - Rp 300</button>
+            <button class="shop-item" data-price="400">Item 4 - Rp 400</button>
+            <button class="shop-item" data-price="500">Item 5 - Rp 500</button>
+        </div>
+    </div>
+
+    <!-- Achievements -->
+    <div id="achievements-screen">
+        <h2>Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement locked">1</div>
+            <div class="achievement locked">2</div>
+            <div class="achievement locked">3</div>
+            <div class="achievement locked">4</div>
+            <div class="achievement locked">5</div>
+            <div class="achievement locked">6</div>
+            <div class="achievement locked">7</div>
+            <div class="achievement locked">8</div>
+            <div class="achievement locked">9</div>
+            <div class="achievement locked">10</div>
+        </div>
+    </div>
+
+    <!-- Sistem Kerja -->
+    <div id="work-screen">
+        <h2>Pilih Durasi Kerja</h2>
+        <button class="work-option" data-time="1">1 Jam</button>
+        <button class="work-option" data-time="2">2 Jam</button>
+        <button class="work-option" data-time="3">3 Jam</button>
+    </div>
+
+    <!-- Popup Event -->
+    <div id="event-popup" class="hidden">
+        <p>🔔 Event Baru Dimulai!</p>
+        <button onclick="closePopup()">Tutup</button>
+    </div>
+
+    <!-- Popup Notifikasi -->
+    <div id="message-popup" class="hidden">
+        <p>📩 Kamu punya pesan baru!</p>
+        <button onclick="closeMessagePopup()">Tutup</button>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="hidden">
+        <span id="close-gallery">❌</span>
+        <img id="gallery-image" src="">
+    </div>
+
+    <!-- Konfirmasi Logout -->
+    <div id="logout-confirmation" class="hidden">
+        <p>Apakah kamu yakin ingin keluar?</p>
+        <button id="confirm-logout">Ya</button>
+        <button id="cancel-logout">Batal</button>
+    </div>
+
+    <!-- Tambahan script untuk memastikan semua file JS terhubung -->
+    <script src="main.js"></script>
+    <script src="achievements.js"></script>
+    <script src="animations.js"></script>
+    <script src="chat-system.js"></script>
+    <script src="chat.js"></script>
+    <script src="events.js"></script> <!-- Perbaikan nama file -->
+    <script src="gallery.js"></script>
+    <script src="memories.js"></script>
+    <script src="notifications.js"></script>
+    <script src="save.js"></script>
+    <script src="settings.js"></script>
+    <script src="shop.js"></script>
+    <script src="squaregram.js"></script>
+    <script src="system-info.js"></script>
+    <script src="time.js"></script>
+    <script src="work-system.js"></script>
+</body>
+</html>
